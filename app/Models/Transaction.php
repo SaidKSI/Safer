@@ -14,8 +14,11 @@ class Transaction extends Model
     protected $fillable = [
         'flight_id',
         'user_id',
-        'user_bank',
-        'user_phone_number',
+        'bank_id',
+        'transaction_id',
+        'action_date',
+        'phone_number',
+        'status'
         // Add other fillable attributes as needed
     ];
 

@@ -9,19 +9,19 @@
         </li>
         <li class="nav-heading">Pages</li>
         <li class="nav-item">
-            <a class="nav-link collapsed" href="/admin/transaction-onhold">
+            <a class="nav-link collapsed" href="/admin/transactions/hold">
                 <i class="bi bi-clock-fill"></i>
                 <span>Pending Transaction</span>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link collapsed" href="/admin/accept-tansaction">
+            <a class="nav-link collapsed" href="/admin/transactions/terminated">
                 <i class="bi bi-check2-square"></i>
                 <span>Accepted Transaction</span>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link collapsed" href="/admin/cancelled-tansaction">
+            <a class="nav-link collapsed" href="/admin/transactions/cancelled">
                 <i class="bx bxs-hand"></i>
                 <span>Cancelled Transaction</span>
             </a>

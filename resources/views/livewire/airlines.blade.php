@@ -2,7 +2,7 @@
 
 <div>
     @if ($airlines && count($airlines) > 0)
-    <select class="form-select" aria-label="Airline select">
+    <select class="form-select" aria-label="Airline select" name="airline_id">
         <option selected>Choose an airline</option>
         @foreach ($airlines as $airline)
         @if ($airline)

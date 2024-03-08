@@ -32,6 +32,7 @@
 	<link href="{{asset('assets/css/style.css')}}" rel="stylesheet" />
 	<script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.js" defer></script>
 
+
 </head>
 
 <body>
@@ -57,5 +58,6 @@
 	<!-- Template Main JS File -->
 	<script src="{{asset('assets/js/main.js')}}"></script>
 </body>
+
 
 </html>

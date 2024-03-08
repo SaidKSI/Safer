@@ -65,7 +65,7 @@
 							onsubmit="return confirm('Are you sure you want to delete this airline?');">
 							@csrf
 							@method('DELETE')
-							<button class="btn btn-danger" type="submit"><i class="bi bi-trash-fill"></button>
+							<button class="btn btn-danger" type="submit"><i class="bi bi-trash-fill"></i></button>
 						</form>
 					</td>
 				</tr>

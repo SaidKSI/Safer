@@ -15,8 +15,12 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('flight_id');
             $table->unsignedBigInteger('user_id');
-            $table->string('user_bank');
-            $table->string('user_phone_number');
+            $table->unsignedBigInteger('bank_id');
+            $table->string('status')->default('hold');
+            $table->string('transaction_id');
+            $table->string('action_date')->nullable();
+            $table->string('phone_number');
+
             // Add other columns as needed
 
             $table->timestamps();
@@ -24,6 +28,7 @@ return new class extends Migration
             // Foreign key constraints
             $table->foreign('flight_id')->references('id')->on('flights')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('bank_id')->references('id')->on('banks')->onDelete('cascade');
         });
     }
     /**

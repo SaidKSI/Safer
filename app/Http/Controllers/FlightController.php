@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Flight;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class FlightController extends Controller
@@ -30,7 +31,28 @@ class FlightController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'code' => 'required|string',
+            'airline_id' => 'required|numeric',
+            'airport_from_id' => 'required|numeric',
+            'airport_to_id' => 'required|numeric',
+            'price' => 'required|numeric|min:0',
+            'departure_time' => 'required|date', // Validate for 24-hour time format
+        ]);
+
+        // Concatenate the current date with the provided time
+        // $departureDateTime = Carbon::parse($request->input('departure_time'))->toDateString() . ' 00:00:00';
+
+        Flight::create([
+            'code' => $request->input('code'),
+            'airline_id' => $request->input('airline_id'),
+            'airport_from_id' => $request->input('airport_from_id'),
+            'airport_to_id' => $request->input('airport_to_id'),
+            'price' => $request->input('price'),
+            'departure_time' => $request->input('departure_time'),
+        ]);
+
+        return redirect()->route('flights')->with('success', 'Flight created successfully.');
     }
 
     /**
@@ -60,8 +82,16 @@ class FlightController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Flight $flight)
-    {
-        //
+    public function destroy($id)
+{
+    $flight = Flight::find($id);
+
+    if (!$flight) {
+        return redirect()->route('flights')->with('error', 'Flight not found.');
     }
+
+    $flight->delete();
+
+    return redirect()->route('flights')->with('success', 'Flight deleted successfully.');
+}
 }
