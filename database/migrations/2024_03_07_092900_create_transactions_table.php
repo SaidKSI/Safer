@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('bank_id');
             $table->string('status')->default('hold');
             $table->string('transaction_id');
-            $table->string('action_date')->nullable();
+            $table->timestamp('action_date')->nullable();
             $table->string('phone_number');
 
             // Add other columns as needed

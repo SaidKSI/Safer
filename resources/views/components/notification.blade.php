@@ -3,11 +3,11 @@
 <li class="notification-item">
 	<i class="bi bi-exclamation-circle text-warning"></i>
 	<a href="/commande/{{ $commande->id }}">
-	<div>
-		<h4>{{ $commande->user->name }}</h4>
-		<p>{{ $commande->created_at->diffForHumans() }}</p>
-	</div>
-</a>
+		<div>
+			<h4>{{ $commande->user->name }}</h4>
+			<p>{{ $commande->created_at->format('Y-m-d H:i') ->diffForHumans() }}</p>
+		</div>
+	</a>
 </li>
 
 

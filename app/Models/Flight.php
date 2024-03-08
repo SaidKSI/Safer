@@ -17,6 +17,8 @@ class Flight extends Model
         'airport_from_id',
         'airport_to_id',
         'price',
+        'balance',
+        'amount_before_tax',
         'departure_time',
         // Add other fillable attributes as needed
     ];

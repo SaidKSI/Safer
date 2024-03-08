@@ -62,7 +62,7 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="/admin/-tansaction">
+            <a class="nav-link collapsed" href="/admin/history">
                 <i class="bx bx-history"></i>
                 <span>History</span>
             </a>

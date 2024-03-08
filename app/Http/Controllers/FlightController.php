@@ -49,6 +49,8 @@ class FlightController extends Controller
             'airport_from_id' => $request->input('airport_from_id'),
             'airport_to_id' => $request->input('airport_to_id'),
             'price' => $request->input('price'),
+            'amount_before_tax' => $request->input('amount_before_tax'),
+            'balance' => $request->input('balance'),
             'departure_time' => $request->input('departure_time'),
         ]);
 
@@ -83,15 +85,15 @@ class FlightController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy($id)
-{
-    $flight = Flight::find($id);
+    {
+        $flight = Flight::find($id);
 
-    if (!$flight) {
-        return redirect()->route('flights')->with('error', 'Flight not found.');
+        if (!$flight) {
+            return redirect()->route('flights')->with('error', 'Flight not found.');
+        }
+
+        $flight->delete();
+
+        return redirect()->route('flights')->with('success', 'Flight deleted successfully.');
     }
-
-    $flight->delete();
-
-    return redirect()->route('flights')->with('success', 'Flight deleted successfully.');
-}
 }

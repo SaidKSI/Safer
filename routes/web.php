@@ -4,6 +4,7 @@ use App\Http\Controllers\AirController;
 use App\Http\Controllers\BankController;
 use App\Http\Controllers\DashboredController;
 use App\Http\Controllers\FlightController;
+use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\TransactionController;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
@@ -29,6 +30,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/flights', [FlightController::class, 'index'])->name('flights');
     Route::get('/airlines', [AirController::class, 'airlines'])->name('airlines');
     Route::get('/airports', [AirController::class, 'airports'])->name('airports');
+    Route::get('/history', [HistoryController::class, 'index'])->name('history');
     // Transaction
     Route::get('/transactions/{status}', [TransactionController::class, 'index'])->name('transactions');
 
@@ -42,4 +44,8 @@ Route::prefix('admin')->group(function () {
     Route::delete('/delete_airport/{id}', [AirController::class, 'delete_airport'])->name('delete_airport');
     Route::delete('/delete_airline/{id}', [AirController::class, 'delete_airline'])->name('delete_airline');
     Route::delete('/delete_flight/{id}', [FlightController::class, 'destroy'])->name('delete_flight');
+
+    Route::patch('/transactions/update/{id}/{status}', [TransactionController::class, 'updateStatus'])->name('transactions.updateStatus');
+
+    //UPDATE
 });

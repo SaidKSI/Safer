@@ -18,6 +18,8 @@ return new class extends Migration
             $table->unsignedBigInteger('airport_from_id');
             $table->unsignedBigInteger('airport_to_id');
             $table->decimal('price', 10, 2);
+            $table->decimal('amount_before_tax', 10, 2);
+            $table->decimal('balance', 10, 2);
             $table->dateTime('departure_time');
             // Add other columns as needed
 

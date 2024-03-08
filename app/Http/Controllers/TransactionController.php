@@ -20,11 +20,11 @@ class TransactionController extends Controller
                 break;
 
             case 'terminated':
-                $view = 'transaction.terminated';
+                $view = 'transaction.terminat';
                 break;
 
             case 'cancelled':
-                $view = 'transaction.cancelled';
+                $view = 'transaction.cancel';
                 break;
 
             default:
@@ -64,9 +64,23 @@ class TransactionController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Transaction $transaction)
+    public function updateStatus($id, $status)
     {
-        //
+        // Find the transaction
+        $transaction = Transaction::find($id);
+
+        if (!$transaction) {
+            return redirect()->route('transactions')->with(['error' => 'Transaction not found'], 404);
+        }
+
+        // Update the transaction status
+        $date = now();
+        $transaction->action_date = $date;
+        $transaction->status = $status;
+        $transaction->save();
+
+        return redirect()->route('transactions', ['status' => $status])->with(['message' => 'Transaction updated successfully', 'data' => $transaction]);
+
     }
 
     /**
