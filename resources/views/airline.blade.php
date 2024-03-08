@@ -3,45 +3,32 @@
 @section('inner_content')
 <div class="card">
 	<div class="card-body">
-		<h5 class="card-title">flights</h5>
+		<h5 class="card-title">airlines</h5>
 		<div>
 			<button class="btn btn-primary" data-bs-target="#basicModal" data-bs-toggle="modal" type="button">
-				Ajouter un Flight
+				Ajouter un airline
 			</button>
 			<div class="modal fade" id="basicModal" tabindex="-1">
-				<form action="" method="POST">
+				<form action="{{ route('create_airline') }}" method="POST">
 					@csrf
 					<div class="modal-dialog">
 						<div class="modal-content">
 							<div class="modal-header">
-								<h5 class="modal-title">Ajouter un Flight</h5>
+								<h5 class="modal-title">Ajouter un Airline</h5>
 								<button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
 							</div>
 							<div class="modal-body">
-								<label class="" for="inputDate">Airlines</label>
+								<label class="" for="inputDate">name</label>
 								<div class="p-2">
-									<livewire:airlines />
-
+									<input class="form-control" name="name" type="text">
 								</div>
-								<label class="" for="inputDate">Depart</label>
+								<label class="" for="inputDate">Code</label>
 								<div class="p-2">
-									<livewire:airport />
-
-								</div>
-								<label class="" for="inputDate">Destinition</label>
-								<div class="p-2">
-									<livewire:airport />
-
-								</div>
-								<label class="" for="inputDate">departure time</label>
-								<div class="p-2">
-									<input class="form-control" name="departure_time" type="time">
-								</div>
-								<label class="" for="inputDate">price</label>
-								<div class="input-group mb-3">
-									<span class="input-group-text">$</span>
-									<input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
-									<span class="input-group-text">.00</span>
+									<input class="form-control" name="code" type="text"
+										value="{{ substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ'), 0, 3) . rand(100, 999) }}" readonly>
+									<!-- Hidden input to store the code value -->
+									<input type="hidden" name="hidden_code"
+										value="{{ substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ'), 0, 3) . rand(100, 999) }}">
 								</div>
 							</div>
 							<div class="modal-footer">
@@ -51,6 +38,7 @@
 						</div>
 					</div>
 				</form>
+
 			</div><!-- End Basic Modal-->
 		</div>
 
@@ -59,34 +47,31 @@
 			<thead>
 				<tr>
 					<th scope="col">#</th>
-					<th scope="col">Nom</th>
-					<th scope="col">email</th>
-					<th scope="col">Numéro de téléphone</th>
-					<th scope="col">rôle</th>
+					<th scope="col">Code</th>
+					<th scope="col">Name</th>
+
 					<th scope=""></th>
 				</tr>
 			</thead>
 			<tbody>
-				@if ($flights)
-				@foreach ($flights as $flight)
+				@if ($airlines)
+				@foreach ($airlines as $airline)
 				<tr>
-					<th scope="row">{{ $flight->id }}</th>
-					<td>{{ $flight->name }}</td>
-					<td>{{ $flight->email }}</td>
-					<td>{{ $flight->phone_number }}</td>
-					<td>{{ $flight->role }}</td>
-					{{-- <td>
-						<form action="/flight/{{ $flight->id }}" method="POST"
-							onsubmit="return confirm('Are you sure you want to delete this flight?');">
+					<th scope="row">{{ $airline->id }}</th>
+					<td>{{ $airline->code }}</td>
+					<td>{{ $airline->name }}</td>
+					<td>
+						<form action="{{ route('delete_airline', ['id' => $airline->id]) }}" method="POST"
+							onsubmit="return confirm('Are you sure you want to delete this airline?');">
 							@csrf
 							@method('DELETE')
-							<button class="btn btn-danger" type="submit">Supprimer</button>
+							<button class="btn btn-danger" type="submit"><i class="bi bi-trash-fill"></button>
 						</form>
-					</td> --}}
+					</td>
 				</tr>
 				@endforeach
 				@else
-				<td class="text-center" colspan="8">Aucun flight trouvé.</td>
+				<td class="text-center" colspan="8">Aucun airline trouvé.</td>
 				@endif
 			</tbody>
 		</table>

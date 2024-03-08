@@ -26,6 +26,15 @@ Route::prefix('admin')->group(function () {
 Route::get('/banks', [BankController::class, 'index'])->name('banks');
 Route::get('/users', [DashboredController::class, 'users'])->name('users');
 Route::get('/flights', [FlightController::class, 'index'])->name('flights');
+Route::get('/airlines', [AirController::class, 'airlines'])->name('airports');
 Route::get('/airports', [AirController::class, 'airports'])->name('airports');
-Route::get('/airlines', [AirController::class, 'airlines'])->name('airlines');
+
+//POST
+Route::post('/create_airport', [AirController::class, 'create_airport'])->name('create_airport');
+Route::post('/create_airline', [AirController::class, 'create_airline'])->name('create_airline');
+
+//DELETE
+Route::delete('/delete_airport/{id}', [AirController::class, 'delete_airport'])->name('delete_airport');
+Route::delete('/delete_airline/{id}', [AirController::class, 'delete_airline'])->name('delete_airline');
+
 });
